@@ -43,6 +43,7 @@ class Nginx < Formula
             "--with-http_ssl_module",
             "--with-pcre",
             "--with-ipv6",
+            "--with-http_gzip_static_module",
             "--with-cc-opt=-I#{HOMEBREW_PREFIX}/include",
             "--with-ld-opt=-L#{HOMEBREW_PREFIX}/lib",
             "--conf-path=#{etc}/nginx/nginx.conf",
@@ -56,6 +57,7 @@ class Nginx < Formula
 
     args << passenger_config_args if build.include? 'with-passenger'
     args << "--with-http_dav_module" if build.include? 'with-webdav'
+    args << "--with-debug" if build.include? 'with-debug'
     args << "--with-debug" if build.include? 'with-debug'
 
     system "./configure", *args
